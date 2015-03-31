@@ -22,18 +22,18 @@ dictionaries and languages to use. You can add more words and ignore existing
 ones. You can define exceptions for names used by 3rd parties. You can even
 restrict a word's usage to property names only.
 
-## Plugin installation
+## Installation
 
 `jscs-spellcheck` can be installed using NPM and requires
 [jscs](https://github.com/jscs-dev/node-jscs/#installation).
 
 Install it globally if you are using globally installed `jscs`:
 
-    npm install jscs-jsdoc --global
+    npm install jscs-spellcheck --global
 
 But better install it into your project:
 
-    npm install jscs-jsdoc --save-dev
+    npm install jscs-spellcheck --save-dev
 
 ## Usage
 
