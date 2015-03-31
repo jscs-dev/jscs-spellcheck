@@ -37,7 +37,7 @@ But better install it into your project:
 
 ## Usage
 
-To use plugin you should add these lines to your configuration file `.jscsrc`:
+To use, add these lines to your `.jscsrc` configuration file:
 
 ```json
 {
@@ -169,28 +169,3 @@ var data = { videoSrc: 'youtube' };
 ```js
 for (var i = 0; i < array.length; i++) {}
 ```
-
-#### More about JSCS
-
- * [Tutorial and Overview](http://jscs.info/overview.html)
- * [Try JSCS Online](http://jscs.info/demo.html)
- * [Codestyle Rules](http://jscs.info/rules.html)
- * [How to Contribute](http://jscs.info/contributing.html)
- * [Development Team](http://jscs.info/team.html)
-
-#### Who uses JSCS?
-
- * [jQuery](http://jquery.com/)
- * [Adobe](http://www.adobe.com/)
- * [Bootstrap](http://getbootstrap.com/)
- * [AngularJS](https://angularjs.org/)
- * [Yandex](https://yandex.com/)
- * [Wikimedia](https://www.wikimedia.org/)
- * [Grunt](http://gruntjs.com/)
- * [Ember.js](http://www.emberjs.com/)
- * [Ionic](http://ionicframework.com/)
- * [Moment.js](http://momentjs.com/)
- * [TodoMVC](http://todomvc.com/)
- * [Famous](http://famo.us/)
- * [less.js](http://lesscss.org/)
- * [Goodvidio](http://goodvid.io/)
