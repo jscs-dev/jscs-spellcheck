@@ -1,0 +1,88 @@
+{
+  "author": "Jackson Ray Hamilton <jackson@jacksonrayhamilton.com>",
+  "description": "JSCS Spellcheck Plugin",
+  "name": "jscs-spellcheck",
+  "version": "1.0.0",
+  "main": "lib/index",
+  "homepage": "https://github.com/jscs-dev/jscs-spellcheck",
+  "keywords": [
+    "code style",
+    "formatter",
+    "lint",
+    "linter",
+    "style guide",
+    "validate",
+    "jscs",
+    "plugin",
+    "spelling",
+    "spellcheck"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jscs-dev/jscs-spellcheck"
+  },
+  "bugs": {
+    "url": "https://github.com/jscs-dev/jscs-spellcheck/issues"
+  },
+  "contributors": [
+    "Jackson Ray Hamilton <jackson@jacksonrayhamilton.com>"
+  ],
+  "maintainers": [
+    {
+      "name": "Jackson Ray Hamilton",
+      "email": "jackson@jacksonrayhamilton.com",
+      "github-username": "jacksonrayhamilton",
+      "role": "General architecture, bug fixes, common rules"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "dependencies": {
+    "lodash.assign": "~3.0.0",
+    "lodash.indexof": "~3.0.0",
+    "wordlist-english": "^1.0.0"
+  },
+  "devDependencies": {
+    "coveralls": "~2.11.2",
+    "jscs": "^1.12.0",
+    "jshint": "~2.6.0",
+    "mocha": "^2.2.0",
+    "unit-coverage": "^3.4.0"
+  },
+  "peerDependencies": {
+    "jscs": ">=1.8.0 <2.0"
+  },
+  "unit-coverage": {
+    "common": [
+      "-a",
+      "lib",
+      "-a",
+      "test",
+      "-s",
+      "lib/**/*.js",
+      "-t",
+      "test/specs/**/*.js",
+      "-S",
+      "relative",
+      "-O",
+      "sources=lib",
+      "-O",
+      "tests=test/specs"
+    ]
+  },
+  "scripts": {
+    "lint": "jshint . && jscs lib test",
+    "test": "npm run lint && mocha --color",
+    "coverage": "unit-coverage run -p common",
+    "coverage-html": "unit-coverage run -p common -r html -o coverage.html",
+    "changelog": "git log `git describe --tags --abbrev=0`..HEAD --pretty=format:' * %s (%an)' | grep -v 'Merge pull request'",
+    "release": "npm test && npm publish",
+    "travis": "npm run test && unit-coverage run -p common -r lcov -o out.lcov && cat out.lcov | coveralls"
+  },
+  "files": [
+    "lib",
+    "LICENSE"
+  ]
+}
