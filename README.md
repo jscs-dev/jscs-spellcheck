@@ -37,16 +37,13 @@ But better install it into your project:
 
 ## Usage
 
-To use plugin you should add these lines to configuration file `.jscsrc`:
+To use plugin you should add these lines to your configuration file `.jscsrc`:
 
 ```json
 {
     "plugins": [ "jscs-spellcheck" ],
     "requireDictionaryWords": {
-        "dictionaries": [ "english", "american" ],
-        "allowWordsInIdentifiersAndProperties": [ "transclude" ],
-        "allowNamesForProperties": [ "src" ],
-        "excluded": [ "i" ]
+        "dictionaries": [ "english", "american" ]
     }
 }
 ```
