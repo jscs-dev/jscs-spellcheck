@@ -120,6 +120,26 @@ describe('rules/require-dictionary-words', function() {
         });
     });
 
+    describe('allowWordsInIdentifiers', function() {
+        beforeEach(function() {
+            checker.configure({
+                requireDictionaryWords: {
+                    allowWordsInIdentifiers: ['asdf', 'jkl']
+                }
+            });
+        });
+
+        it('should report non-words in properties', function() {
+            assert(checker.checkString('object.jkl = 1;').getErrorCount() === 1);
+            assert(checker.checkString('object.jklJkl = 1;').getErrorCount() === 2);
+        });
+
+        it('should not report allowed words in identifiers', function() {
+            assert(checker.checkString('asdf = 1;').isEmpty());
+            assert(checker.checkString('asdfAsdf = 1;').isEmpty());
+        });
+    });
+
     describe('allowWordsInProperties', function() {
         beforeEach(function() {
             checker.configure({
@@ -137,6 +157,26 @@ describe('rules/require-dictionary-words', function() {
         it('should not report allowed words in properties', function() {
             assert(checker.checkString('object.jkl = 1;').isEmpty());
             assert(checker.checkString('object.jklJkl = 1;').isEmpty());
+        });
+    });
+
+    describe('allowNamesAsIdentifiers', function() {
+        beforeEach(function() {
+            checker.configure({
+                requireDictionaryWords: {
+                    allowNamesAsIdentifiers: ['asdf', 'jkl']
+                }
+            });
+        });
+
+        it('should report non-names and properties', function() {
+            assert(checker.checkString('asdfAsdf = 1;').getErrorCount() === 2);
+            assert(checker.checkString('object.jkl = 1;').getErrorCount() === 1);
+            assert(checker.checkString('object.jklJkl = 1;').getErrorCount() === 2);
+        });
+
+        it('should not report allowed names as identifiers', function() {
+            assert(checker.checkString('asdf = 1;').isEmpty());
         });
     });
 
