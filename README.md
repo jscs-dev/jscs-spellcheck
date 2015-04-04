@@ -20,7 +20,7 @@ This JSCS plugin checks for words that can't be found in a dictionary, and tells
 you where they are so that you can spell them correctly. You can choose which
 dictionaries and languages to use. You can add more words and ignore existing
 ones. You can define exceptions for names used by 3rd parties. You can even
-restrict a word's usage to property names only.
+restrict a word's usage to identifiers or property names only.
 
 ## Installation
 
@@ -65,11 +65,13 @@ Values:
  - `Object`:
    - `dictionaries`: (default `["english"]`) array of dictionary names including
      `"english"`, `"american"`, `"british"` and `"canadian"`
-   - `allowWordsInIdentifiersAndProperties`: additional words allowed anywhere
-   - `allowWordsInProperties`: additional words allowed only as properties
-   - `allowNamesForIdentifiersAndProperties`: names ignored by spellcheck
-   - `allowNamesForProperties`: names ignored by spellcheck when used as properties
-   - `excluded`: words to exclude from the dictionaries
+   - `allowWords`: additional words allowed anywhere
+   - `allowWordsInIdentifiers`: additional words allowed only in identifiers
+   - `allowWordsInProperties`: additional words allowed only in properties
+   - `allowNames`: whole names ignored by spellcheck
+   - `allowNamesAsIdentifiers`: whole names ignored by spellcheck when used as identifiers
+   - `allowNamesAsProperties`: whole names ignored by spellcheck when used as properties
+   - `excludeWords`: words to exclude from the dictionaries
 
 #### Example
 
@@ -78,11 +80,11 @@ Values:
 
 "requireDictionaryWords": {
     "dictionaries": [ "english", "american" ],
-    "allowWordsInIdentifiersAndProperties": [ "transclude" ],
+    "allowWords": [ "transclude" ],
     "allowWordsInProperties": [ "chmod" ],
-    "allowNamesForIdentifiersAndProperties": [ "$stateParams", "util" ],
-    "allowNamesForProperties": [ "src" ],
-    "excluded": [ "i" ]
+    "allowNamesAsIdentifiers": [ "$stateParams", "util" ],
+    "allowNamesAsProperties": [ "src" ],
+    "excludeWords": [ "i" ]
 }
 ```
 
@@ -116,7 +118,7 @@ var color = 'papayawhip';
 var colour = 'papayawhip';
 ```
 
-##### Valid for mode `"allowWordsInIdentifiersAndProperties": [ "transclude" ]`
+##### Valid for mode `"allowWords": [ "transclude" ]`
 
 ```js
 var transclude = function() {};
@@ -138,33 +140,33 @@ fs.chmodSync('/', mode);
 var chmod = 0777;
 ```
 
-##### Valid for mode `"allowNamesForIdentifiersAndProperties": [ "$stateParams", "util" ]`
+##### Valid for mode `"allowNamesAsIdentifiers": [ "$stateParams", "util" ]`
 
 ```js
 var util = require('util');
 function Controller($stateParams) {}
 ```
 
-##### Invalid for mode `"allowNamesForIdentifiersAndProperties": [ "$stateParams", "util" ]`
+##### Invalid for mode `"allowNamesAsIdentifiers": [ "$stateParams", "util" ]`
 
 ```js
 var stringUtil = {};
 var params = {};
 ```
 
-##### Valid for mode `"allowNamesForProperties": [ "src" ]`
+##### Valid for mode `"allowNamesAsProperties": [ "src" ]`
 
 ```js
 element.src = 'https://youtu.be/dQw4w9WgXcQ';
 ```
 
-##### Invalid for mode `"allowNamesForProperties": [ "src" ]`
+##### Invalid for mode `"allowNamesAsProperties": [ "src" ]`
 
 ```js
 var data = { videoSrc: 'youtube' };
 ```
 
-##### Invalid for mode `"excluded": [ "i" ]`
+##### Invalid for mode `"excludeWords": [ "i" ]`
 
 ```js
 for (var i = 0; i < array.length; i++) {}
