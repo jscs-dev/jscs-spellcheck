@@ -264,6 +264,42 @@ describe('rules/require-dictionary-words', function() {
             checker.configure({ requireDictionaryWords: true });
         });
 
+        it('should split', function() {
+            assert(checker.checkString([
+                '// jscs:allowWords',
+                'asdf = 1',
+                'jkl = 1'
+            ].join('\n')).getErrorCount() === 2);
+            assert(checker.checkString([
+                '// jscs:allowWords asdf',
+                'asdf = 1',
+                'jkl = 1'
+            ].join('\n')).getErrorCount() === 1);
+            assert(checker.checkString([
+                '// jscs:allowWords asdf, jkl',
+                'asdf = 1',
+                'jkl = 1'
+            ].join('\n')).isEmpty());
+            assert(checker.checkString([
+                '// jscs:allowWords asdf, jkl,',
+                'asdf = 1',
+                'jkl = 1'
+            ].join('\n')).isEmpty());
+            assert(checker.checkString([
+                '/* jscs:allowWords',
+                ' asdf, jkl */',
+                'asdf = 1',
+                'jkl = 1'
+            ].join('\n')).isEmpty());
+            assert(checker.checkString([
+                '/* jscs:allowWords',
+                ' asdf,',
+                ' jkl */',
+                'asdf = 1',
+                'jkl = 1'
+            ].join('\n')).isEmpty());
+        });
+
         it('should later allow and later disallow inline', function() {
             assert(checker.checkString([
                 'asdf = 1',
