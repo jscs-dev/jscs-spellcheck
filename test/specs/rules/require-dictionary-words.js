@@ -83,11 +83,11 @@ describe('rules/require-dictionary-words', function() {
         });
     });
 
-    describe('allowWordsInIdentifiersAndProperties', function() {
+    describe('allowWords', function() {
         beforeEach(function() {
             checker.configure({
                 requireDictionaryWords: {
-                    allowWordsInIdentifiersAndProperties: ['asdf', 'jkl']
+                    allowWords: ['asdf', 'jkl']
                 }
             });
         });
@@ -100,11 +100,11 @@ describe('rules/require-dictionary-words', function() {
         });
     });
 
-    describe('allowNamesForIdentifiersAndProperties', function() {
+    describe('allowNames', function() {
         beforeEach(function() {
             checker.configure({
                 requireDictionaryWords: {
-                    allowNamesForIdentifiersAndProperties: ['asdf', 'jkl']
+                    allowNames: ['asdf', 'jkl']
                 }
             });
         });
@@ -140,11 +140,11 @@ describe('rules/require-dictionary-words', function() {
         });
     });
 
-    describe('allowNamesForProperties', function() {
+    describe('allowNamesAsProperties', function() {
         beforeEach(function() {
             checker.configure({
                 requireDictionaryWords: {
-                    allowNamesForProperties: ['asdf', 'jkl']
+                    allowNamesAsProperties: ['asdf', 'jkl']
                 }
             });
         });
@@ -163,11 +163,11 @@ describe('rules/require-dictionary-words', function() {
         });
     });
 
-    describe('excluded', function() {
+    describe('excludeWords', function() {
         beforeEach(function() {
             checker.configure({
                 requireDictionaryWords: {
-                    excluded: ['good']
+                    excludeWords: ['good']
                 }
             });
         });
