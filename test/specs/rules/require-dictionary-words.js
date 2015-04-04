@@ -3,112 +3,11 @@ var assert = require('assert');
 
 describe('rules/require-dictionary-words', function() {
     var checker;
+
     beforeEach(function() {
         checker = new Checker();
         checker.registerDefaultRules();
         checker.configure({ plugins: ['./lib/index.js'] });
-    });
-
-    describe('inline configuration', function() {
-        beforeEach(function() {
-            checker.configure({ requireDictionaryWords: true });
-        });
-
-        it('should later allow and later disallow inline', function() {
-            assert(checker.checkString([
-                'asdf = 1',
-                '// jscs:allowWords asdf, jkl',
-                'asdf = 1',
-                '// jscs:disallowWords asdf, jkl',
-                'asdf = 1',
-            ].join('\n')).getErrorCount() === 2);
-
-            assert(checker.checkString([
-                'asdf = 1',
-                'jkl = 1',
-                '// jscs:allowWords asdf, jkl',
-                'asdf = 1',
-                'jkl = 1',
-                '// jscs:disallowWords asdf, jkl',
-                'asdf = 1',
-                'jkl = 1'
-            ].join('\n')).getErrorCount() === 4);
-        });
-
-        it('should allow words inline', function() {
-            assert(checker.checkString([
-                '// jscs:allowWords asdf, jkl',
-                'asdf = 1',
-                'asdfAsdf = 1',
-                'object.jkl = 1',
-                'object.jklJkl = 1'
-            ].join('\n')).isEmpty());
-        });
-
-        it('should allow words in identifiers inline', function() {
-            assert(checker.checkString([
-                '// jscs:allowWordsInIdentifiers asdf, jkl',
-                'asdf = 1',
-                'asdfAsdf = 1'
-            ].join('\n')).isEmpty());
-            assert(checker.checkString([
-                '// jscs:allowWordsInIdentifiers asdf, jkl',
-                'object.jkl = 1',
-                'object.jklJkl = 1'
-            ].join('\n')).getErrorCount() === 3);
-        });
-
-        it('should allow words in properties inline', function() {
-            assert(checker.checkString([
-                '// jscs:allowWordsInProperties asdf, jkl',
-                'object.jkl = 1',
-                'object.jklJkl = 1'
-            ].join('\n')).isEmpty());
-            assert(checker.checkString([
-                '// jscs:allowWordsInProperties asdf, jkl',
-                'asdf = 1',
-                'asdfAsdf = 1'
-            ].join('\n')).getErrorCount() === 3);
-        });
-
-        it('should allow names inline', function() {
-            assert(checker.checkString([
-                '// jscs:allowNames asdf, jkl',
-                'asdf = 1',
-                'object.jkl = 1'
-            ].join('\n')).isEmpty());
-            assert(checker.checkString([
-                '// jscs:allowNames asdf, jkl',
-                'asdfAsdf = 1',
-                'object.jklJkl = 1'
-            ].join('\n')).getErrorCount() === 4);
-        });
-
-        it('should allow names as identifiers inline', function() {
-            assert(checker.checkString([
-                '// jscs:allowNamesAsIdentifiers asdf, jkl',
-                'asdf = 1'
-            ].join('\n')).isEmpty());
-            assert(checker.checkString([
-                '// jscs:allowNamesAsIdentifiers asdf, jkl',
-                'asdfAsdf = 1',
-                'object.jkl = 1',
-                'object.jklJkl = 1'
-            ].join('\n')).getErrorCount() === 5);
-        });
-
-        it('should allow names as properties inline', function() {
-            assert(checker.checkString([
-                '// jscs:allowNamesAsProperties asdf, jkl',
-                'object.jkl = 1'
-            ].join('\n')).isEmpty());
-            assert(checker.checkString([
-                '// jscs:allowNamesAsProperties asdf, jkl',
-                'asdf = 1',
-                'asdfAsdf = 1',
-                'object.jklJkl = 1'
-            ].join('\n')).getErrorCount() === 5);
-        });
     });
 
     describe('true', function() {
@@ -357,6 +256,108 @@ describe('rules/require-dictionary-words', function() {
                     });
                 }, new RegExp('wordlist-' + missingLanguage));
             });
+        });
+    });
+
+    describe('inline configuration', function() {
+        beforeEach(function() {
+            checker.configure({ requireDictionaryWords: true });
+        });
+
+        it('should later allow and later disallow inline', function() {
+            assert(checker.checkString([
+                'asdf = 1',
+                '// jscs:allowWords asdf, jkl',
+                'asdf = 1',
+                '// jscs:disallowWords asdf, jkl',
+                'asdf = 1'
+            ].join('\n')).getErrorCount() === 2);
+
+            assert(checker.checkString([
+                'asdf = 1',
+                'jkl = 1',
+                '// jscs:allowWords asdf, jkl',
+                'asdf = 1',
+                'jkl = 1',
+                '// jscs:disallowWords asdf, jkl',
+                'asdf = 1',
+                'jkl = 1'
+            ].join('\n')).getErrorCount() === 4);
+        });
+
+        it('should allow words inline', function() {
+            assert(checker.checkString([
+                '// jscs:allowWords asdf, jkl',
+                'asdf = 1',
+                'asdfAsdf = 1',
+                'object.jkl = 1',
+                'object.jklJkl = 1'
+            ].join('\n')).isEmpty());
+        });
+
+        it('should allow words in identifiers inline', function() {
+            assert(checker.checkString([
+                '// jscs:allowWordsInIdentifiers asdf, jkl',
+                'asdf = 1',
+                'asdfAsdf = 1'
+            ].join('\n')).isEmpty());
+            assert(checker.checkString([
+                '// jscs:allowWordsInIdentifiers asdf, jkl',
+                'object.jkl = 1',
+                'object.jklJkl = 1'
+            ].join('\n')).getErrorCount() === 3);
+        });
+
+        it('should allow words in properties inline', function() {
+            assert(checker.checkString([
+                '// jscs:allowWordsInProperties asdf, jkl',
+                'object.jkl = 1',
+                'object.jklJkl = 1'
+            ].join('\n')).isEmpty());
+            assert(checker.checkString([
+                '// jscs:allowWordsInProperties asdf, jkl',
+                'asdf = 1',
+                'asdfAsdf = 1'
+            ].join('\n')).getErrorCount() === 3);
+        });
+
+        it('should allow names inline', function() {
+            assert(checker.checkString([
+                '// jscs:allowNames asdf, jkl',
+                'asdf = 1',
+                'object.jkl = 1'
+            ].join('\n')).isEmpty());
+            assert(checker.checkString([
+                '// jscs:allowNames asdf, jkl',
+                'asdfAsdf = 1',
+                'object.jklJkl = 1'
+            ].join('\n')).getErrorCount() === 4);
+        });
+
+        it('should allow names as identifiers inline', function() {
+            assert(checker.checkString([
+                '// jscs:allowNamesAsIdentifiers asdf, jkl',
+                'asdf = 1'
+            ].join('\n')).isEmpty());
+            assert(checker.checkString([
+                '// jscs:allowNamesAsIdentifiers asdf, jkl',
+                'asdfAsdf = 1',
+                'object.jkl = 1',
+                'object.jklJkl = 1'
+            ].join('\n')).getErrorCount() === 5);
+        });
+
+        it('should allow names as properties inline', function() {
+            assert(checker.checkString([
+                '// jscs:allowNamesAsProperties asdf, jkl',
+                'object.jkl = 1'
+            ].join('\n')).isEmpty());
+            assert(checker.checkString([
+                '// jscs:allowNamesAsProperties asdf, jkl',
+                'asdf = 1',
+                'asdfAsdf = 1',
+                'object.jklJkl = 1'
+            ].join('\n')).getErrorCount() === 5);
         });
     });
 });
