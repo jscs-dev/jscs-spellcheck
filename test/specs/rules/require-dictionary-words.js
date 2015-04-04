@@ -58,11 +58,11 @@ describe('rules/require-dictionary-words', function() {
             assert(checker.checkString('object[jkl] = 1;').isEmpty());
         });
 
-        it('should not report real words', function() {
+        it('should not report defined words', function() {
             assert(checker.checkString('good = 1;').isEmpty());
         });
 
-        it('should not report multiple real words', function() {
+        it('should not report multiple defined words', function() {
             assert(checker.checkString('goodGood = 1;').isEmpty());
         });
     });
@@ -77,7 +77,7 @@ describe('rules/require-dictionary-words', function() {
             assert(checker.checkString('class Asdf { jkl() {} }').getErrorCount() === 2);
         });
 
-        it('should not report real words in es6', function() {
+        it('should not report defined words in es6', function() {
             assert(checker.checkString('object = {good, good() {}, [0 + 1]: 2};').isEmpty());
             assert(checker.checkString('class Good { good() {} }').isEmpty());
         });
@@ -92,7 +92,7 @@ describe('rules/require-dictionary-words', function() {
             });
         });
 
-        it('should not report included words', function() {
+        it('should not report allowed words', function() {
             assert(checker.checkString('asdf = 1;').isEmpty());
             assert(checker.checkString('object.jkl = 1;').isEmpty());
             assert(checker.checkString('asdfAsdf = 1;').isEmpty());
@@ -109,12 +109,12 @@ describe('rules/require-dictionary-words', function() {
             });
         });
 
-        it('should report names used as substrings', function() {
+        it('should report names used as parts of names', function() {
             assert(checker.checkString('asdfAsdf = 1;').getErrorCount() === 2);
             assert(checker.checkString('object.jklJkl = 1;').getErrorCount() === 2);
         });
 
-        it('should not report included names', function() {
+        it('should not report allowed names', function() {
             assert(checker.checkString('asdf = 1;').isEmpty());
             assert(checker.checkString('object.jkl = 1;').isEmpty());
         });
@@ -129,12 +129,12 @@ describe('rules/require-dictionary-words', function() {
             });
         });
 
-        it('should report non-words', function() {
+        it('should report non-words in identifiers', function() {
             assert(checker.checkString('asdf = 1;').getErrorCount() === 1);
             assert(checker.checkString('asdfAsdf = 1;').getErrorCount() === 2);
         });
 
-        it('should not report included words', function() {
+        it('should not report allowed words in properties', function() {
             assert(checker.checkString('object.jkl = 1;').isEmpty());
             assert(checker.checkString('object.jklJkl = 1;').isEmpty());
         });
@@ -149,16 +149,13 @@ describe('rules/require-dictionary-words', function() {
             });
         });
 
-        it('should report names used as substrings', function() {
+        it('should report non-names and identifiers', function() {
+            assert(checker.checkString('asdf = 1;').getErrorCount() === 1);
+            assert(checker.checkString('asdfAsdf = 1;').getErrorCount() === 2);
             assert(checker.checkString('object.jklJkl = 1;').getErrorCount() === 2);
         });
 
-        it('should report non-names', function() {
-            assert(checker.checkString('asdf = 1;').getErrorCount() === 1);
-            assert(checker.checkString('asdfAsdf = 1;').getErrorCount() === 2);
-        });
-
-        it('should not report included names', function() {
+        it('should not report allowed names as properties', function() {
             assert(checker.checkString('object.jkl = 1;').isEmpty());
         });
     });
@@ -202,7 +199,7 @@ describe('rules/require-dictionary-words', function() {
                 });
             });
 
-            it('should not report real words', function() {
+            it('should not report defined words', function() {
                 assert(checker.checkString('color = 1;').isEmpty());
             });
         });
