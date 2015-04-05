@@ -171,3 +171,28 @@ var data = { videoSrc: 'youtube' };
 ```js
 for (var i = 0; i < array.length; i++) {}
 ```
+
+#### Error Suppression
+
+You can also allow (and later disallow) words on a per-file (or per-line)
+basis:
+
+```js
+// jscs:allowWords concat, dest, dist, src
+grunt.initConfig({
+    concat: {
+        dist: {
+            src: ['src/*.js'],
+            dest: 'dist/scripts.js'
+        }
+    }
+});
+```
+
+```js
+// jscs:allowNamesAsIdentifiers EOL
+var EOL = require('os').EOL;
+// jscs:disallowNamesAsIdentifiers EOL
+
+if (age > 80) var reachingEol = true; // invalid
+```
