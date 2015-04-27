@@ -33,7 +33,7 @@ To use, add these lines to your `.jscsrc` configuration file:
 {
     "plugins": [ "jscs-spellcheck" ],
     "requireDictionaryWords": {
-        "dictionaries": [ "english", "american" ]
+        "dictionaries": [ "english", "english/american" ]
     }
 }
 ```
@@ -54,7 +54,7 @@ Values:
  - `true`: use the `"english"` dictionary
  - `Object`:
    - `dictionaries`: (default `["english"]`) array of dictionary names including
-     `"english"`, `"american"`, `"british"` and `"canadian"`
+     `"english"`, `"english/american"`, `"english/british"` and `"english/canadian"`
    - `allowWords`: additional words allowed anywhere
    - `allowWordsInIdentifiers`: additional words allowed only in identifiers
    - `allowWordsInProperties`: additional words allowed only in properties
@@ -69,7 +69,7 @@ Values:
 "requireDictionaryWords": true
 
 "requireDictionaryWords": {
-    "dictionaries": [ "english", "american" ],
+    "dictionaries": [ "english", "english/american" ],
     "allowWords": [ "transclude" ],
     "allowWordsInProperties": [ "chmod" ],
     "allowNamesAsIdentifiers": [ "$stateParams", "util" ],
@@ -96,13 +96,13 @@ obj.src = 3;
 fileDir = 4;
 ```
 
-##### Valid for mode `"dictionaries": [ "american" ]`, invalid for `"british"`
+##### Valid for mode `"dictionaries": [ "english/american" ]`, invalid for `"english/british"`
 
 ```js
 var color = 'papayawhip';
 ```
 
-##### Valid for mode `"dictionaries": [ "british" ]`, invalid for `"american"`
+##### Valid for mode `"dictionaries": [ "english/british" ]`, invalid for `"english/american"`
 
 ```js
 var colour = 'papayawhip';

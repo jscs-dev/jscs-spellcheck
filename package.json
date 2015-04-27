@@ -42,7 +42,7 @@
   "dependencies": {
     "lodash.assign": "~3.0.0",
     "lodash.indexof": "~3.0.0",
-    "wordlist-english": "^1.0.0"
+    "wordlist-english": "^1.1.0"
   },
   "devDependencies": {
     "coveralls": "~2.11.2",

@@ -235,7 +235,7 @@ describe('rules/require-dictionary-words', function() {
             beforeEach(function() {
                 checker.configure({
                     requireDictionaryWords: {
-                        dictionaries: ['english', 'american']
+                        dictionaries: ['english', 'english/american']
                     }
                 });
             });
