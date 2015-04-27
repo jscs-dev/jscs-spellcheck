@@ -6,16 +6,6 @@
 
 **JSCS Spellcheck** — Spellcheck plugin for [JSCS](https://github.com/jscs-dev/node-jscs/).
 
-The majority of time spent programming is not spent typing, but in reading and
-maintaining existing code. It is important that other programmers be able to
-understand exactly what is going on in a complex system.
-
-Abbreviations and contractions can make code harder to understand. They can be
-ambiguous and arbitrary. Abbreviations cannot be distinguished from
-misspellings. Today, there are free integrated development environments which
-provide word auto-completion and line wrapping; there is no practical advantage
-to using abbreviations in code.
-
 This JSCS plugin checks for words that can't be found in a dictionary, and tells
 you where they are so that you can spell them correctly. You can choose which
 dictionaries and languages to use. You can add more words and ignore existing
