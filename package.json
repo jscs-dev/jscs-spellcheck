@@ -40,8 +40,7 @@
     "node": ">= 0.10.0"
   },
   "dependencies": {
-    "lodash.assign": "~3.0.0",
-    "lodash.indexof": "~3.0.0",
+    "lodash": "^3.7.0",
     "wordlist-english": "^1.1.0"
   },
   "devDependencies": {
