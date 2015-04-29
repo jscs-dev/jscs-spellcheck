@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/jscs-dev/jscs-spellcheck.svg?branch=master)](https://travis-ci.org/jscs-dev/jscs-spellcheck)
-[![Windows CI](https://ci.appveyor.com/api/projects/status/github/jscs-dev/jscs-spellcheck?svg=true)](https://ci.appveyor.com/project/jscs-dev/jscs-spellcheck/branch/master)
+[![Windows CI](https://ci.appveyor.com/api/projects/status/45ejwr4mt6ct90g8?svg=true)](https://ci.appveyor.com/project/jacksonrayhamilton/jscs-spellcheck/branch/master)
 [![Coverage Status](https://img.shields.io/coveralls/jscs-dev/jscs-spellcheck.svg?style=flat)](https://coveralls.io/r/jscs-dev/jscs-spellcheck?branch=master)
 [![Dependency Status](https://david-dm.org/jscs-dev/jscs-spellcheck.svg?theme=shields.io&style=flat)](https://david-dm.org/jscs-dev/jscs-spellcheck)
 [![devDependency Status](https://david-dm.org/jscs-dev/jscs-spellcheck/dev-status.svg?theme=shields.io&style=flat)](https://david-dm.org/jscs-dev/jscs-spellcheck#info=devDependencies)
