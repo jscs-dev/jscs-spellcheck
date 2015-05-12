@@ -1,3 +1,5 @@
+var plugin = require('../../..');
+
 var Checker = require('jscs/lib/checker');
 var assert = require('assert');
 
@@ -7,7 +9,7 @@ describe('rules/require-dictionary-words', function() {
     beforeEach(function() {
         checker = new Checker();
         checker.registerDefaultRules();
-        checker.configure({ plugins: ['./lib/index.js'] });
+        checker.configure({ plugins: [plugin] });
     });
 
     describe('true', function() {
