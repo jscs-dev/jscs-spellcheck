@@ -3,6 +3,20 @@ var plugin = require('../../..');
 var Checker = require('jscs/lib/checker');
 var assert = require('assert');
 
+describe('plugin', function() {
+    var called = false;
+    plugin({
+        registerRule: function(Rule) {
+            var rule = new Rule();
+            assert(typeof rule.configure === 'function');
+            assert(typeof rule.getOptionName === 'function');
+            assert(typeof rule.check === 'function');
+            called = true;
+        }
+    });
+    assert(called);
+});
+
 describe('rules/require-dictionary-words', function() {
     var checker;
 
